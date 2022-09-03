@@ -18,7 +18,7 @@ CFLAGS	=	-Lminilibx-linux -lmlx -lX11 -lXext -MMD -MP -I./includes -g3
 
 LIB		=	-Llibft/ -lft
 
-SRCS	= 	
+SRCS	= 	parsing.c\
 
 OBJS	:=	${addprefix ./obj/,${SRCS:%.c=%.o}}
 
@@ -28,7 +28,7 @@ all: ${NAME}
 
 -include $(DEP)
 
-./obj/%.o: ./src/%.c
+./obj/%.o: ./src/parsing/%.c
 	@mkdir -p $(@D)
 	$(CC) $(CFLAGS) -o $@ -c $<
 
