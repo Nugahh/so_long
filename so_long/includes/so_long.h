@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/03 20:12:30 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/04 14:19:30 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,6 @@ typedef struct s_data
 	int		step_count;
 }	t_data;
 
-void	get_map(t_data *data);
+void	get_map(t_data *data, char *argv);
 
 #endif

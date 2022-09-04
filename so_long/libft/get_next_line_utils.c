@@ -6,25 +6,11 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 01:44:59 by fwong             #+#    #+#             */
-/*   Updated: 2022/06/27 11:56:40 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/04 14:25:31 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "get_next_line.h"
-
-size_t	ft_strlen(const char *s)
-{
-	size_t	i;
-
-	i = 0;
-	if (s)
-	{
-		while (s[i])
-			i++;
-		return (i);
-	}
-	return (0);
-}
 
 int	ft_is_newline(char *str)
 {
