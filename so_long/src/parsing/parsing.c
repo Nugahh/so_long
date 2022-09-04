@@ -6,11 +6,30 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/03 21:48:32 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/04 04:50:07 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
+
+int	ft_count_line(char *argv)
+{
+	int		count;
+	char	*line;
+	int		fd;
+
+	count = 0;
+	fd = open(argv, O_RDONLY);
+	line = get_next_line(fd);
+	while (line)
+	{
+		free(line);
+		line = get_next_line(fd);
+		count++;
+	}
+	close(fd);
+	return (count);
+}
 
 void	get_map(t_data *data)
 {
