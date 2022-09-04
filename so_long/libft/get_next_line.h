@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 01:44:57 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/03 18:57:52 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/04 19:10:19 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # include <fcntl.h>
 # include <stddef.h>
 # include <stdio.h>
+# include "libft.h"
 
 size_t	ft_strlen(const char *s);
 int		ft_is_newline(char *str);
