@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/04 20:57:48 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/08 21:30:37 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,6 +25,7 @@ typedef struct s_data
 	void	*C_IMG;
 	void	*BG_IMG;
 	char	**map;
+	char	**map_fill;
 	int		collectible;
 	int		x;
 	int		y;
@@ -39,5 +40,9 @@ typedef struct s_utils
 
 void	get_map(t_data *data, char *argv);
 int		ft_count_line(char *argv);
+int	ft_check_each(t_data *data, char *argv);
+int	ft_check_wall(t_data *data, char *argv);
+int	ft_check_rectangle_map(t_data *data, char *argv);
+
 
 #endif
