@@ -14,7 +14,7 @@
 
 #define MLX_ERROR 1
 
-int main(void)
+int	main(void)
 {
 	void	*mlx_ptr;
 	void	*win_ptr;

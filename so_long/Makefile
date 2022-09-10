@@ -14,11 +14,15 @@ NAME	=	so_long
 
 CC		=	clang
 
-CFLAGS	=	-Lminilibx-linux -lmlx -lX11 -lXext -MMD -MP -I./includes -g3
+CFLAGS	=	-Wall -Wextra -Werror -MMD -MP -I./includes -g3
+# -Lminilibx-linux -lmlx -lX11 -lXext -MMD -MP -I./includes -g3
 
 LIB		=	-Llibft/ -lft
 
 SRCS	= 	parsing.c\
+			check_map.c\
+			flood_fill.c\
+			utils.c\
 
 OBJS	:=	${addprefix ./obj/,${SRCS:%.c=%.o}}
 

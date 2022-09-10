@@ -6,23 +6,22 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/08 21:34:50 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/09 22:59:07 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	get_map(t_data *data, char *argv)
+void	get_map(t_data *data, t_utils *utils, char *argv)
 {
 	int		i;
 	int		fd;
-	char	*line;
 
 	data->map = malloc(sizeof(char *) * (ft_count_line(argv) + 1));
 	if (!data->map)
 		return ;
-	data->map_fill = malloc(sizeof(char *) * (ft_count_line(argv) + 1));
-	if (!data->map_fill)
+	utils->map_fill = malloc(sizeof(char *) * (ft_count_line(argv) + 1));
+	if (!utils->map_fill)
 		return ;
 	i = 0;
 	fd = open(argv, O_RDONLY);
@@ -34,24 +33,27 @@ void	get_map(t_data *data, char *argv)
 	while (data->map[i++])
 	{
 		data->map[i] = get_next_line(fd);
-		data->map_fill = get_next_line(fd);
-	} 
+		utils->map_fill[i] = data->map[i];
+	}
 	close(fd);
 }
 
-int	main (int argc, char **argv)
-{
-	t_data	data;
+// int	main(int argc, char **argv)
+// {
+// 	t_data	data;
+// 	t_utils	utils;
 
-	get_map(&data, argv[1]);
+// 	get_map(&data, &utils, argv[1]);
 	
-	
-	for (int i = 0; data.map[i]; i++)
-		printf("%s", data.map[i]);
+// 	for (int i = 0; data.map[i]; i++)
+// 		printf("%s", data.map[i]);
+// 	printf("\n --------------- \n");
+// 	for (int i = 0; utils.map_fill[i]; i++)
+// 		printf("%s", utils.map_fill[i]);
 
-	// ft_check_rectangle_map(&data, argv);
-	// printf("Check rectangle is: %d\n", ft_check_rectangle_map(&data, argv[1]));
-	// printf("Check each: %d\n", ft_check_each(&data, argv[1]));
-	// printf("Check wall: %d\n", ft_check_wall(&data, argv[1]));
+// 	// ft_check_rectangle_map(&data, argv);
+// 	// printf("Check rectangle is: %d\n", ft_check_rectangle_map(&data, argv[1]));
+// 	// printf("Check each: %d\n", ft_check_each(&data, argv[1]));
+// 	// printf("Check wall: %d\n", ft_check_wall(&data, argv[1]));
 
-}
+// }

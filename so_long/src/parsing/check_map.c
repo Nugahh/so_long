@@ -6,14 +6,13 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:16:10 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/08 21:12:48 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/10 03:34:14 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
-#include <stdbool.h>
 
-int	ft_check_rectangle_map(t_data *data, char *argv)
+int	ft_check_rectangle_map(t_data *data)
 {
 	int	i;
 	int	j;
@@ -26,9 +25,9 @@ int	ft_check_rectangle_map(t_data *data, char *argv)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == '\0' && i == 0)
-				k = j;	
+				k = j;
 			else if (data->map[i][j] == '\0' && k != j)
-			 	return (0);
+				return (0);
 			j++;
 		}
 		i++;
@@ -38,23 +37,18 @@ int	ft_check_rectangle_map(t_data *data, char *argv)
 
 int	ft_check_wall(t_data *data, char *argv)
 {
-	t_utils	*utils;
 	int		i;
 	int		j;
-	
-	i = 0;
-	while (i < ft_count_line(argv))
+
+	i = -1;
+	while (++i < ft_count_line(argv))
 	{
-		j = 0;
-		while (data->map[i][j])
-		{
+		j = -1;
+		while (data->map[i][++j])
 			if (data->map[i][j] == '\n')
 				data->map[i][j] = '\0';
-			j++;
-		}
 		if (data->map[i][0] != '1' || data->map[i][j - 2] != '1')
-				return (0);
-		i++;
+			return (0);
 	}
 	j = -1;
 	while (data->map[0][++j])
@@ -67,7 +61,7 @@ int	ft_check_wall(t_data *data, char *argv)
 	return (1);
 }
 
-int	ft_check_each(t_data *data, char *argv)
+int	ft_check_each(t_data *data)
 {
 	int		i;
 	int		j;
