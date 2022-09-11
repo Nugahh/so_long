@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/10 03:30:53 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/11 02:53:39 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,19 +37,29 @@ int	ft_count_collectible(t_data *data, t_utils *utils)
 {
 	int	i;
 	int	j;
-	
-	i = 0;
-	while (data->map[i])
+	int	p;
+	int	e;
+
+	i = -1;
+	p = 0;
+	e = 0;
+	while (data->map[++i])
 	{
 		j = 0;
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == 'C')
 				utils->total_collectible++;
+			if (data->map[i][j] == 'P')
+				p++;
+			if (data->map[i][j] == 'E')
+				e++;
 			j++;
 		}
-		i++;
 	}
+	if (p != 1 || e != 1)
+		return (0);
+	return (1);
 }
 
 void	init_var(t_utils *utils)

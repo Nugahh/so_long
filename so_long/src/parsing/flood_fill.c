@@ -6,16 +6,60 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:13:39 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/10 03:44:29 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/11 02:59:37 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-int	ft_check_player(t_data *data, t_utils *utils)
+int	ft_check_player(t_utils *utils, int i, int j)
 {
-	int		i;
-	int		j;
+	if (utils->map_fill[i][j] == 'P' &&
+	(utils->map_fill[i][j + 1] == 'C'
+	|| utils->map_fill[i][j + 1] == '0'
+	|| utils->map_fill[i - 1][j] == 'C'
+	|| utils->map_fill[i - 1][j] == '0'
+	|| utils->map_fill[i][j - 1] == 'C'
+	|| utils->map_fill[i][j - 1] == '0'
+	|| utils->map_fill[i + 1][j] == 'C'
+	|| utils->map_fill[i + 1][j] == '0'))
+		return (1);
+	return (0);
+}
+
+void	ft_change_to_player(t_utils *utils, int i, int j)
+{
+	if (utils->map_fill[i][j + 1] == '0' || utils->map_fill[i][j + 1] == 'C')
+	{
+		if (utils->map_fill[i][j + 1] == 'C')
+			utils->count_collectible++;
+		utils->map_fill[i][j + 1] = 'P';
+	}
+	if (utils->map_fill[i - 1][j] == '0' || utils->map_fill[i - 1][j] == 'C')
+	{
+		if (utils->map_fill[i - 1][j] == 'C')
+			utils->count_collectible++;
+		utils->map_fill[i - 1][j] = 'P';
+	}
+	if (utils->map_fill[i][j - 1] == '0' || utils->map_fill[i][j - 1] == 'C')
+	{
+		if (utils->map_fill[i][j - 1] == 'C')
+			utils->count_collectible++;
+		utils->map_fill[i][j - 1] = 'P';
+	}
+	if (utils->map_fill[i + 1][j] == '0' || utils->map_fill[i + 1][j] == 'C')
+	{
+		if (utils->map_fill[i + 1][j] == 'C')
+			utils->count_collectible++;
+		utils->map_fill[i + 1][j] = 'P';
+	}
+	utils->tab[(int)utils->map_fill[i][j]] = 1;
+}
+
+void	ft_check_exit(t_utils *utils)
+{
+	int	i;
+	int	j;
 
 	i = 0;
 	while (utils->map_fill[i])
@@ -23,62 +67,22 @@ int	ft_check_player(t_data *data, t_utils *utils)
 		j = 0;
 		while (utils->map_fill[i][j])
 		{
-			if (utils->map_fill[i][j] == 'P' &&
-			(utils->map_fill[i][j + 1] == 'C'
-			|| utils->map_fill[i][j + 1] == '0'
-			|| utils->map_fill[i - 1][j] == 'C'
-			|| utils->map_fill[i - 1][j] == '0'
-			|| utils->map_fill[i][j - 1] == 'C'
-			|| utils->map_fill[i][j - 1] == '0'
-			|| utils->map_fill[i + 1][j] == 'C'
-			|| utils->map_fill[i + 1][j] == '0'))
-				return (1);
+			if (utils->map_fill[i][j] == 'E')
+			{
+				if (utils->map_fill[i][j + 1] == 'P'
+					|| utils->map_fill[i - 1][j] == 'P'
+					|| utils->map_fill[i][j - 1] == 'P'
+					|| utils->map_fill[i + 1][j] == 'P')
+					utils->exit = true;
+				printf("bool = %d\n", utils->exit);
+			}
 			j++;
 		}
 		i++;
 	}
-	return (0);
 }
 
-void	ft_change_to_player(t_data *data, t_utils *utils, int i, int j)
-{
-	if (utils->map_fill[i][j + 1] == '0' || utils->map_fill[i][j + 1] == 'C')
-	{
-		utils->map_fill[i][j + 1] = 'P';
-		if (utils->map_fill[i][j + 1] == 'C')
-			utils->count_collectible++;
-	}
-	if (utils->map_fill[i - 1][j] == '0' || utils->map_fill[i - 1][j] == 'C')
-	{
-		utils->map_fill[i - 1][j] = 'P';
-		if (utils->map_fill[i - 1][j] == 'C')
-			utils->count_collectible++;
-	}
-	if (utils->map_fill[i][j - 1] == '0' || utils->map_fill[i][j - 1] == 'C')
-	{
-		utils->map_fill[i][j - 1] = 'P';
-		if (utils->map_fill[i][j - 1] == 'C')
-			utils->count_collectible++;
-	}
-	if (utils->map_fill[i + 1][j] == '0' || utils->map_fill[i + 1][j] == 'C')
-	{
-		utils->map_fill[i + 1][j] = 'P';
-		if (utils->map_fill[i + 1][j] == 'C')
-			utils->count_collectible++;
-	}
-	utils->tab[utils->map_fill[i][j]] = 1;
-}
-
-int	ft_check_exit(t_data *data, t_utils *utils, int i, int j)
-{
-	if (utils->map_fill[i][j + 1] == 'E'
-		|| utils->map_fill[i - 1][j] == 'E'
-		|| utils->map_fill[i][j] - 1 == 'E'
-		|| utils->map_fill[i + 1][j] == 'E')
-		utils->exit = true;
-}
-
-void	ft_flood_fill(t_data *data, t_utils *utils)
+void	ft_flood_fill(t_utils *utils)
 {
 	int		i;
 	int		j;
@@ -89,11 +93,10 @@ void	ft_flood_fill(t_data *data, t_utils *utils)
 		j = 0;
 		while (utils->map_fill[i][j])
 		{
-			if (ft_check_player(data, utils)
-				&& utils->tab[(int)utils->map_fill[i][j]] != 1)
+			if (ft_check_player(utils, i, j))
 			{
-				ft_change_to_player(data, utils, i, j);
-				i--;
+				ft_change_to_player(utils, i, j);
+				i = 0;
 			}
 			j++;
 		}
@@ -103,12 +106,18 @@ void	ft_flood_fill(t_data *data, t_utils *utils)
 
 int	ft_check_path(t_data *data, t_utils *utils)
 {
-	ft_flood_fill(data, utils);
-	if (utils->count_collectible == utils->total_collectible
-		&& utils->exit == true)
-		return (1);
+	init_var(utils);
+	ft_flood_fill(utils);
+	ft_check_exit(utils);
+	if (ft_count_collectible(data, utils))
+	{
+		if (utils->count_collectible == utils->total_collectible
+			&& utils->exit == true)
+			return (1);
+	}
 	return (0);
 }
+
 /* int	main(int argc, char **argv)
 {
 	t_data	data;

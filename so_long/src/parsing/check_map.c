@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:16:10 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/10 03:34:14 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/11 02:48:50 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -88,4 +88,33 @@ int	ft_check_each(t_data *data)
 	if (player == true && collectible == true && exit == true)
 		return (1);
 	return (0);
+}
+
+int	ft_check_map(t_data *data, char *argv)
+{
+	int	i;
+	int	j;
+	
+	if (!ft_check_rectangle_map(data))
+		return (0);
+	if (!ft_check_wall(data, argv))
+		return (0);
+	if (!ft_check_each(data))
+		return (0);
+	i = -1;
+	while (data->map[++i])
+	{
+		j = -1;
+		while (data->map[i][++j])
+		{
+			if (data->map[i][j] && 
+			(data->map[i][j] != 'P'
+			&& data->map[i][j] != 'E'
+			&& data->map[i][j] != '0'
+			&& data->map[i][j] != '1'
+			&& data->map[i][j] != 'C'))
+				return (2);
+		}	
+	}
+	return (1);
 }
