@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/11 02:53:39 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/11 20:40:51 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,7 +62,7 @@ int	ft_count_collectible(t_data *data, t_utils *utils)
 	return (1);
 }
 
-void	init_var(t_utils *utils)
+void	ft_init_var(t_utils *utils)
 {
 	utils->count_collectible = 0;
 	utils->total_collectible = 0;

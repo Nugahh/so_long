@@ -17,12 +17,13 @@ CC		=	clang
 CFLAGS	=	-Wall -Wextra -Werror -MMD -MP -I./includes -g3
 # -Lminilibx-linux -lmlx -lX11 -lXext -MMD -MP -I./includes -g3
 
-LIB		=	-Llibft/ -lft
+LIB		=	-Llibft/ -lft -Lminilibx-linux -lmlx -lX11 -lXext
 
 SRCS	= 	parsing.c\
 			check_map.c\
-			flood_fill.c\
+			check_path.c\
 			utils.c\
+			init_map.c\
 
 OBJS	:=	${addprefix ./obj/,${SRCS:%.c=%.o}}
 
@@ -32,8 +33,9 @@ all: ${NAME}
 
 -include $(DEP)
 
-./obj/%.o: ./src/parsing/%.c
+./obj/%.o: ./src/*/%.c
 	@mkdir -p $(@D)
+	@make -C minilibx-linux
 	$(CC) $(CFLAGS) -o $@ -c $<
 
 ${NAME}: ${OBJS} ./libft/libft.a

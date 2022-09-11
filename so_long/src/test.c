@@ -14,23 +14,16 @@
 
 #define MLX_ERROR 1
 
-int	main(void)
+int	init_ptr(t_data *data)
 {
-	void	*mlx_ptr;
-	void	*win_ptr;
-
-	mlx_ptr = mlx_init();
-	if (mlx_ptr == NULL)
+	data->mlx = mlx_init();
+	if (data->mlx == NULL)
 		return (MLX_ERROR);
-	win_ptr = mlx_new_window(mlx_ptr, 500, 800, "My first window!");
-	if (win_ptr == NULL)
-	{
-		free(win_ptr);
-		return (MLX_ERROR);
-	}
-	while (1)
-		;
-	mlx_destroy_window(mlx_ptr, win_ptr);
-	mlx_destroy_display(mlx_ptr);
-	free(mlx_ptr);
+	data->win = mlx_new_window(data->mlx, 500, 800, "My first window!");
+	if (data->win == NULL)
+		return (free(data->win), MLX_ERROR);
+	while (1);
+	mlx_destroy_window(data->mlx, data->win);
+	mlx_destroy_display(data->mlx);
+	free(data->mlx);
 }

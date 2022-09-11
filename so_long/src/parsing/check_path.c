@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        :::      ::::::::   */
-/*   flood_fill.c                                       :+:      :+:    :+:   */
+/*   check_path.c                                       :+:      :+:    :+:   */
 /*                                                    +:+ +:+         +:+     */
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:13:39 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/11 02:59:37 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/11 19:55:57 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -106,7 +106,7 @@ void	ft_flood_fill(t_utils *utils)
 
 int	ft_check_path(t_data *data, t_utils *utils)
 {
-	init_var(utils);
+	ft_init_var(utils);
 	ft_flood_fill(utils);
 	ft_check_exit(utils);
 	if (ft_count_collectible(data, utils))
