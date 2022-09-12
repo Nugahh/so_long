@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/11 23:12:15 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/12 18:42:17 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,8 +31,8 @@ void	get_map(t_data *data, t_utils *utils, char *argv)
 		data->map[i] = get_next_line(fd);
 	close(fd);
 	// a changer sal fils de pute
-	data->nb_char_per_line = ft_strlen(data->map[0]);
-	data->nb_line = ft_count_line(argv);
+	data->width = ft_strlen(data->map[0]);
+	data->height = ft_count_line(argv);
 	ft_copy_map(data, utils, argv);
 }
 

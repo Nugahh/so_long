@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:13:39 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/11 19:55:57 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/12 19:39:06 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -53,7 +53,6 @@ void	ft_change_to_player(t_utils *utils, int i, int j)
 			utils->count_collectible++;
 		utils->map_fill[i + 1][j] = 'P';
 	}
-	utils->tab[(int)utils->map_fill[i][j]] = 1;
 }
 
 void	ft_check_exit(t_utils *utils)
@@ -106,7 +105,7 @@ void	ft_flood_fill(t_utils *utils)
 
 int	ft_check_path(t_data *data, t_utils *utils)
 {
-	ft_init_var(utils);
+	ft_init_struct(data, utils);
 	ft_flood_fill(utils);
 	ft_check_exit(utils);
 	if (ft_count_collectible(data, utils))

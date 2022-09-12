@@ -6,30 +6,18 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/11 23:19:12 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/12 23:02:33 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	init_struct(t_data *data)
-{
-	data->mlx = NULL;
-	data->win = NULL;
-	data->P_IMG = NULL;
-	data->W_IMG = NULL;
-	data->C_IMG = NULL;
-	data->F_IMG = NULL;
-	data->EC_IMG = NULL;
-	data->EO_IMG = NULL;
-	data->map = NULL;
-}
 int	init_ptr(t_data *data)
 {
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (0);
-	data->win = mlx_new_window(data->mlx, data->nb_char_per_line * 32, data->nb_line * 32, "so_long");
+	data->win = mlx_new_window(data->mlx, data->width * 64, data->height * 64, "so_long");
 	if (data->win == NULL)
 		return (free(data->win), 0);
 	return (0);
@@ -62,23 +50,21 @@ int	ft_display_map(t_data *data)
 		while (data->map[x][y])
 		{
 			if (data->map[x][y] == 'P')
-				mlx_put_image_to_window(data->mlx, data->win, data->P_IMG, y * 32, x * 32);
+				mlx_put_image_to_window(data->mlx, data->win, data->P_IMG, y * 64, x * 64);
 			else if (data->map[x][y] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win, data->C_IMG, y * 32, x * 32);
+				mlx_put_image_to_window(data->mlx, data->win, data->C_IMG, y * 64, x * 64);
 			else if (data->map[x][y] == '1')
-				mlx_put_image_to_window(data->mlx, data->win, data->W_IMG, y * 32, x * 32);
+				mlx_put_image_to_window(data->mlx, data->win, data->W_IMG, y * 64, x * 64);
 			else if (data->map[x][y] == '0')
-				mlx_put_image_to_window(data->mlx, data->win, data->F_IMG, y * 32, x * 32);
+				mlx_put_image_to_window(data->mlx, data->win, data->F_IMG, y * 64, x * 64);
 			else if (data->map[x][y] == 'E')
-				mlx_put_image_to_window(data->mlx, data->win, data->EC_IMG, y * 32, x * 32);
+				mlx_put_image_to_window(data->mlx, data->win, data->EC_IMG, y * 64, x * 64);
 			y++;
 		}
 		x++;
 	}
 	return (0);
 }
-
-
 
 int	main (int argc, char **argv)
 {
@@ -87,16 +73,12 @@ int	main (int argc, char **argv)
 	
 	if (argc == 2)
 	{
-		init_struct(&data);
+		ft_init_struct(&data, &utils);
 		get_map(&data, &utils, argv[1]);
 		init_ptr(&data);
-		for (int i = 0; data.map[i]; i++)
-			printf("%s", data.map[i]);
-		printf("\n --------------- \n");
-		for (int i = 0; utils.map_fill[i]; i++)
-			printf("%s", utils.map_fill[i]);
 		init_img(&data);
 		mlx_loop_hook(data.mlx, &ft_display_map, &data);
+		mlx_key_hook(data.win, ft_move, &data);
 		mlx_loop(data.mlx);
 	}
 }

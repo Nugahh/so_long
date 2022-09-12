@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/11 23:04:29 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/12 22:51:51 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,6 +20,8 @@
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
+#include <X11/Xlib.h>
+#include <X11/Xutil.h>
 #include <stdbool.h>
 
 /* ************************************************************************* */
@@ -40,19 +42,16 @@ typedef struct s_data
 	int		collectible;
 	int		x;
 	int		y;
-	int		nb_char_per_line;
-	int		nb_line;
+	int		width;
+	int		height;
 	int		step_count;
 }	t_data;
 
 typedef struct s_utils
 {
 	char	**map_fill;
-	int		i;
-	int		j;
 	int		count_collectible;
 	int		total_collectible;
-	int		tab[256];
 	bool	exit;
 }	t_utils;
 
@@ -76,10 +75,21 @@ int		ft_check_rectangle_map(t_data *data);
 int		ft_check_map(t_data *data, char *argv);
 
 /* ************************************************************************* */
-/*                                    Utils                                  */
+/*                                    Minilibx                               */
 /* ************************************************************************* */
 
+// display map
 int	ft_display_map(t_data *data);
+int	ft_close_window(t_data *data);
+int	ft_close(t_data *data);
+
+// move functions
+int		ft_find_player(t_data *data);
+int		ft_move(t_data *data, t_utils *utils, int keycode);
+void	ft_move_up(t_data *data, t_utils *utils);
+void	ft_move_down(t_data *data, t_utils *utils);
+void	ft_move_left(t_data *data, t_utils *utils);
+void	ft_move_right(t_data *data, t_utils *utils);
 
 /* ************************************************************************* */
 /*                                    Utils                                  */
@@ -88,6 +98,6 @@ int	ft_display_map(t_data *data);
 int		ft_count_collectible(t_data *data, t_utils *utils);
 int		ft_count_line(char *argv);
 int		ft_copy_map(t_data *data, t_utils *utils, char *argv);
-void	ft_init_var(t_utils *utils);
+void	ft_init_struct(t_data *data, t_utils *utils);
 
 #endif

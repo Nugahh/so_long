@@ -24,6 +24,7 @@ SRCS	= 	parsing.c\
 			check_path.c\
 			utils.c\
 			init_map.c\
+			move.c\
 
 OBJS	:=	${addprefix ./obj/,${SRCS:%.c=%.o}}
 
