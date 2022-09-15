@@ -6,13 +6,13 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/12 18:42:17 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/15 07:08:26 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	get_map(t_data *data, t_utils *utils, char *argv)
+void	get_map(t_data *data, char *argv)
 {
 	int		i;
 	int		fd;
@@ -33,31 +33,31 @@ void	get_map(t_data *data, t_utils *utils, char *argv)
 	// a changer sal fils de pute
 	data->width = ft_strlen(data->map[0]);
 	data->height = ft_count_line(argv);
-	ft_copy_map(data, utils, argv);
+	ft_copy_map(data, argv);
 }
 
-int	ft_copy_map(t_data *data, t_utils *utils, char *argv)
+int	ft_copy_map(t_data *data, char *argv)
 {
 	int	i;
 	int	j;
 	int	len;
 
-	utils->map_fill = malloc(sizeof(char *) * (ft_count_line(argv) + 1));
-	if (!utils->map_fill)
+	data->map_fill = malloc(sizeof(char *) * (ft_count_line(argv) + 1));
+	if (!data->map_fill)
 		return (0);
 	i = -1;
 	while (data->map[++i])
 	{
 		len = ft_strlen(data->map[i]);
-		utils->map_fill[i] = malloc(sizeof(char) * (len + 1));
-		if (!utils->map_fill[i])
+		data->map_fill[i] = malloc(sizeof(char) * (len + 1));
+		if (!data->map_fill[i])
 			return (0);
 		j = -1;
 		while (data->map[i][++j])
-			utils->map_fill[i][j] = data->map[i][j];
-		utils->map_fill[i][j] = 0;
+			data->map_fill[i][j] = data->map[i][j];
+		data->map_fill[i][j] = 0;
 	}
-	utils->map_fill[i] = 0;
+	data->map_fill[i] = 0;
 	return (1);
 }
 

@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/12 23:02:33 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/15 07:10:04 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,8 +40,8 @@ void	init_img(t_data *data)
 
 int	ft_display_map(t_data *data)
 {
-	int x;
-	int y;
+	int	x;
+	int	y;
 
 	x = 0;
 	while (data->map[x])
@@ -69,16 +69,18 @@ int	ft_display_map(t_data *data)
 int	main (int argc, char **argv)
 {
 	t_data data;
-	t_utils utils;
 	
 	if (argc == 2)
 	{
-		ft_init_struct(&data, &utils);
-		get_map(&data, &utils, argv[1]);
+		ft_init_struct(&data);
+		get_map(&data, argv[1]);
 		init_ptr(&data);
 		init_img(&data);
-		mlx_loop_hook(data.mlx, &ft_display_map, &data);
-		mlx_key_hook(data.win, ft_move, &data);
+		// ft_display_map(&data);
+		ft_find_player(&data);
+		mlx_loop_hook(data.mlx, ft_display_map, &data);
+		mlx_hook(data.win, 2, 1L<<0, ft_move, &data);
+		//mlx_key_hook(data.win, ft_move, &data);
 		mlx_loop(data.mlx);
 	}
 }

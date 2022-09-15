@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/12 19:39:06 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/15 07:06:53 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ int	ft_count_line(char *argv)
 	return (count);
 }
 
-int	ft_count_collectible(t_data *data, t_utils *utils)
+int	ft_count_collectible(t_data *data)
 {
 	int	i;
 	int	j;
@@ -49,7 +49,7 @@ int	ft_count_collectible(t_data *data, t_utils *utils)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == 'C')
-				utils->total_collectible++;
+				data->total_collectible++;
 			if (data->map[i][j] == 'P')
 				p++;
 			if (data->map[i][j] == 'E')
@@ -62,7 +62,7 @@ int	ft_count_collectible(t_data *data, t_utils *utils)
 	return (1);
 }
 
-void	ft_init_struct(t_data *data, t_utils *utils)
+void	ft_init_struct(t_data *data)
 {
 	data->mlx = NULL;
 	data->win = NULL;
@@ -73,6 +73,8 @@ void	ft_init_struct(t_data *data, t_utils *utils)
 	data->EC_IMG = NULL;
 	data->EO_IMG = NULL;
 	data->map = NULL;
-	utils->count_collectible = 0;
-	utils->total_collectible = 0;
+	data->x = 0;
+	data->y = 0;
+	data->count_collectible = 0;
+	data->total_collectible = 0;
 }
