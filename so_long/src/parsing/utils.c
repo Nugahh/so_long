@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 07:06:53 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/15 17:09:18 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,6 +73,9 @@ void	ft_init_struct(t_data *data)
 	data->EC_IMG = NULL;
 	data->EO_IMG = NULL;
 	data->map = NULL;
+	data->map_fill = NULL;
+	data->height = 0;
+	data->width = 0;
 	data->x = 0;
 	data->y = 0;
 	data->count_collectible = 0;

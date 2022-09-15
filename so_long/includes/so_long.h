@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 07:06:32 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/15 16:31:50 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -64,7 +64,7 @@ void	get_map(t_data *data, char *argv);
 // check path functions
 int		ft_check_player(t_data *data, int i, int j);
 void	ft_change_to_player(t_data *data, int i, int j);
-void	ft_check_exit(t_data *data);
+int		ft_check_exit(t_data *data);
 void	ft_flood_fill(t_data *data);
 int		ft_check_path(t_data *data);
 

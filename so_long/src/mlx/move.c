@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 21:43:34 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 07:12:58 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/15 17:04:33 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -34,58 +34,71 @@ int	ft_find_player(t_data *data)
 
 void	ft_move_up(t_data *data)
 {
-	if (data->map[data->y - 1][data->x] != '1' && data->exit == false)
+	if ((data->map[data->y - 1][data->x] != '1' 
+	|| data->map[data->y - 1][data->x] != 'E'))
 	{
 		data->map[data->y - 1][data->x] = 'P';
 		data->map[data->y][data->x] = '0';
 		data->y -= 1;
 	}
-	else if (data->map[data->y - 1][data->x] == 'E' && ft_check_path(data))
+	else if (data->map[data->y - 1][data->x] == 'E' && data->exit == true)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->map[data->y - 1][data->x] == 'C')
 		data->count_collectible++;
+	if (data->count_collectible == data->total_collectible)
+		data->exit = true;
 }
 
 void	ft_move_down(t_data *data)
 {
-	if (data->map[data->y + 1][data->x] != '1' && data->exit == false)
+	if (data->map[data->y + 1][data->x] != '1'
+	&& data->map[data->y + 1][data->x] != 'E')
 	{
 		data->map[data->y + 1][data->x] = 'P';
 		data->map[data->y][data->x] = '0';
-		data->x += 1;
+		data->y += 1;
 	}
-	else if (data->map[data->y + 1][data->x] == 'E' && ft_check_path(data))
+	else if (data->map[data->y + 1][data->x] == 'E' && data->exit == true)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->map[data->y + 1][data->x] == 'C')
 		data->count_collectible++;
+	if (data->count_collectible == data->total_collectible)
+		data->exit = true;
 }
 
 void	ft_move_left(t_data *data)
 {
-	if (data->map[data->y][data->x - 1] != '1' && data->exit == false)
+	if (data->map[data->y][data->x - 1] != '1'
+	&& data->map[data->y][data->x - 1] != 'E')
+
 	{
 		data->map[data->y][data->x - 1] = 'P';
 		data->map[data->y][data->x] = '0';
 		data->x -= 1;
 	}
-	else if (data->map[data->y][data->x - 1] == 'E' && ft_check_path(data))
+	else if (data->map[data->y][data->x - 1] == 'E' && data->exit == true)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->map[data->y][data->x - 1] == 'C')
 		data->count_collectible++;
+	if (data->count_collectible == data->total_collectible)
+		data->exit = true;
 }
 
 void	ft_move_right(t_data *data)
 {
-	if (data->map[data->y][data->x + 1] != '1' && data->exit == false)
+	if (data->map[data->y][data->x + 1] != '1'
+	&& data->map[data->y][data->x + 1] != 'E')
 	{
 		data->map[data->y][data->x + 1] = 'P';
 		data->map[data->y][data->x] = '0';
 		data->x += 1;
 	}
-	else if (data->map[data->y][data->x + 1] == 'E' && ft_check_path(data))
+	else if (data->map[data->y][data->x + 1] == 'E' && data->exit == true)
 		mlx_destroy_window(data->mlx, data->win);
 	if (data->map[data->y][data->x + 1] == 'C')
 		data->count_collectible++;
+	if (data->count_collectible == data->total_collectible)
+		data->exit = true;
 }
 
 int	ft_move(int keycode, t_data *data)

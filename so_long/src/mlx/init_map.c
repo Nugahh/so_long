@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 07:10:04 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/15 17:07:32 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,6 +79,9 @@ int	main (int argc, char **argv)
 		// ft_display_map(&data);
 		ft_find_player(&data);
 		mlx_loop_hook(data.mlx, ft_display_map, &data);
+		printf("data->exit = %d", data.exit);
+		printf("data->count = %d", data.count_collectible);
+		printf("data->total = %d", data.total_collectible);
 		mlx_hook(data.win, 2, 1L<<0, ft_move, &data);
 		//mlx_key_hook(data.win, ft_move, &data);
 		mlx_loop(data.mlx);
