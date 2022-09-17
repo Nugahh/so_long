@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 07:08:26 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/17 19:12:34 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,33 +16,30 @@ void	get_map(t_data *data, char *argv)
 {
 	int		i;
 	int		fd;
+	int		size;
 
-	data->map = malloc(sizeof(char *) * (ft_count_line(argv) + 1));
-	if (!data->map)
-		return ;
-	i = 0;
 	fd = open(argv, O_RDONLY);
 	if (fd <= -1)
 		return ;
-	data->map[i] = get_next_line(fd);
-	if (!data->map[i])
+	size = ft_count_line(argv, data);
+	data->map = malloc(sizeof(char *) * (size + 1));
+	if (!data->map)
 		return ;
-	while (data->map[i++])
-		data->map[i] = get_next_line(fd);
+	i = 0;
+	while (i < size)
+		data->map[i++] = get_next_line(fd);
 	close(fd);
-	// a changer sal fils de pute
 	data->width = ft_strlen(data->map[0]);
-	data->height = ft_count_line(argv);
-	ft_copy_map(data, argv);
+	ft_copy_map(data);
 }
 
-int	ft_copy_map(t_data *data, char *argv)
+int	ft_copy_map(t_data *data)
 {
 	int	i;
 	int	j;
 	int	len;
 
-	data->map_fill = malloc(sizeof(char *) * (ft_count_line(argv) + 1));
+	data->map_fill = malloc(sizeof(char *) * (data->height + 1));
 	if (!data->map_fill)
 		return (0);
 	i = -1;

@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 16:31:50 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/17 19:12:21 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -97,8 +97,8 @@ void	ft_move_right(t_data *data);
 /* ************************************************************************* */
 
 int		ft_count_collectible(t_data *data);
-int		ft_count_line(char *argv);
-int		ft_copy_map(t_data *data, char *argv);
+int		ft_count_line(char *argv, t_data *data);
+int		ft_copy_map(t_data *data);
 void	ft_init_struct(t_data *data);
 
 #endif

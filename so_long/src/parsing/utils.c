@@ -6,13 +6,13 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 17:09:18 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/17 19:12:09 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-int	ft_count_line(char *argv)
+int	ft_count_line(char *argv, t_data *data)
 {
 	int		count;
 	int		fd;
@@ -26,10 +26,11 @@ int	ft_count_line(char *argv)
 	while (map)
 	{
 		free(map);
-		count++;
 		map = get_next_line(fd);
+		count++;
 	}
 	close(fd);
+	data->height = count;
 	return (count);
 }
 

@@ -12,7 +12,7 @@
 
 NAME	=	so_long
 
-CC		=	clang
+CC		=	gcc
 
 CFLAGS	=	-Wall -Wextra -Werror -MMD -MP -I./includes -g3
 # -Lminilibx-linux -lmlx -lX11 -lXext -MMD -MP -I./includes -g3

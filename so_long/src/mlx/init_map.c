@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 17:07:32 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/16 15:48:25 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,6 +30,9 @@ void	init_img(t_data *data)
 	
 	x = 0;
 	y = 0;
+	if (!data->C_IMG || !data->P_IMG || !data->W_IMG || !data->F_IMG 
+	|| !data->EC_IMG || !data->EO_IMG)
+		return ;
 	data->P_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/player.xpm", &x, &y);
 	data->C_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/collectible.xpm", &x, &y);
 	data->W_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/wall.xpm", &x, &y);
