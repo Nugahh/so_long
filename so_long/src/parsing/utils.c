@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/17 19:12:09 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/18 15:52:52 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,11 +23,16 @@ int	ft_count_line(char *argv, t_data *data)
 	if (fd <= -1)
 		return (0);
 	map = get_next_line(fd);
+	if (!map)
+		return (close(fd), 1);
+	int x = 0;
 	while (map)
 	{
+		ft_putnbr_fd(x, 1);
 		free(map);
 		map = get_next_line(fd);
 		count++;
+		x++;
 	}
 	close(fd);
 	data->height = count;

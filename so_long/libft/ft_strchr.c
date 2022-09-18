@@ -6,26 +6,42 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/05/07 10:59:13 by fwong             #+#    #+#             */
-/*   Updated: 2022/05/25 17:56:08 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/18 16:18:42 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "libft.h"
 
-char	*ft_strchr(const char *s, int c)
+char	*ft_strchr(char *s, int c)
 {
-	while (*s)
+	int	i;
+
+	i = 0;
+	if (s == NULL)
+		return (0);
+	while (s[i] != '\0')
 	{
-		if ((unsigned char)*s == (unsigned char)c)
-		{
-			return ((char *)(s));
-		}
-		s++;
+		if (s[i] == (char)c)
+			return ((char *)s + i);
+		i++;
 	}
-	if (*s == c)
-		return ((char *)s);
-	return (NULL);
+	return (0);
 }
+
+// char	*ft_strchr(const char *s, int c)
+// {
+// 	while (*s)
+// 	{
+// 		if ((unsigned char)*s == (unsigned char)c)
+// 		{
+// 			return ((char *)(s));
+// 		}
+// 		s++;
+// 	}
+// 	if (*s == c)
+// 		return ((char *)s);
+// 	return (NULL);
+// }
 /* 
 int main()
 {

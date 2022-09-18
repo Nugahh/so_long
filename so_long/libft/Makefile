@@ -6,7 +6,7 @@
 #    By: fwong <fwong@student.42.fr>                +#+  +:+       +#+         #
 #                                                 +#+#+#+#+#+   +#+            #
 #    Created: 2022/05/25 15:53:23 by fwong             #+#    #+#              #
-#    Updated: 2022/09/03 20:01:08 by fwong            ###   ########.fr        #
+#    Updated: 2022/09/18 15:48:06 by fwong            ###   ########.fr        #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ Bonus_OBJS = ${BONUS:.c=.o}
 
 CC	= gcc
 
-CFLAGS	= -Wall -Werror -Wextra
+CFLAGS	= -Wall -Werror -Wextra -g
 
 all: ${NAME}
 

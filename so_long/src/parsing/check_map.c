@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:16:10 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/11 02:48:50 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/18 17:28:05 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -41,7 +41,7 @@ int	ft_check_wall(t_data *data, char *argv)
 	int		j;
 
 	i = -1;
-	while (++i < ft_count_line(argv))
+	while (++i < ft_count_line(argv, data))
 	{
 		j = -1;
 		while (data->map[i][++j])
@@ -55,8 +55,8 @@ int	ft_check_wall(t_data *data, char *argv)
 		if (data->map[0][j] != '1')
 			return (0);
 	j = -1;
-	while (data->map[ft_count_line(argv) - 1][++j])
-		if (data->map[ft_count_line(argv) - 1][j] != '1')
+	while (data->map[ft_count_line(argv, data) - 1][++j])
+		if (data->map[ft_count_line(argv, data) - 1][j] != '1')
 			return (0);
 	return (1);
 }
@@ -113,7 +113,7 @@ int	ft_check_map(t_data *data, char *argv)
 			&& data->map[i][j] != '0'
 			&& data->map[i][j] != '1'
 			&& data->map[i][j] != 'C'))
-				return (2);
+				return (0);
 		}	
 	}
 	return (1);

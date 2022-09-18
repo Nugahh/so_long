@@ -6,25 +6,25 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/17 19:12:34 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/18 17:36:36 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void	get_map(t_data *data, char *argv)
+void get_map(t_data *data, char *argv)
 {
-	int		i;
-	int		fd;
-	int		size;
+	int i;
+	int fd;
+	int size;
 
+	size = ft_count_line(argv, data);
 	fd = open(argv, O_RDONLY);
 	if (fd <= -1)
-		return ;
-	size = ft_count_line(argv, data);
+		return;
 	data->map = malloc(sizeof(char *) * (size + 1));
 	if (!data->map)
-		return ;
+		return;
 	i = 0;
 	while (i < size)
 		data->map[i++] = get_next_line(fd);
@@ -33,17 +33,17 @@ void	get_map(t_data *data, char *argv)
 	ft_copy_map(data);
 }
 
-int	ft_copy_map(t_data *data)
+int ft_copy_map(t_data *data)
 {
-	int	i;
-	int	j;
-	int	len;
+	int i;
+	int j;
+	int len;
 
 	data->map_fill = malloc(sizeof(char *) * (data->height + 1));
 	if (!data->map_fill)
 		return (0);
-	i = -1;
-	while (data->map[++i])
+	i = 0;
+	while (i < data->height)
 	{
 		len = ft_strlen(data->map[i]);
 		data->map_fill[i] = malloc(sizeof(char) * (len + 1));
@@ -53,6 +53,7 @@ int	ft_copy_map(t_data *data)
 		while (data->map[i][++j])
 			data->map_fill[i][j] = data->map[i][j];
 		data->map_fill[i][j] = 0;
+		i++;
 	}
 	data->map_fill[i] = 0;
 	return (1);
@@ -73,7 +74,7 @@ int	ft_copy_map(t_data *data)
 // 		printf("%s", data.map[i]);
 // 	printf("\n --------------- \n");
 // 	for (int i = 0; utils.map_fill[i]; i++)
-// 		printf("%s", utils.map_fill[i]);	
+// 		printf("%s", utils.map_fill[i]);
 // 	}
 // 	// ft_check_rectangle_map(&data, argv);
 // 	// printf("Check rectangle is: %d\n", ft_check_rectangle_map(&data, argv[1]));

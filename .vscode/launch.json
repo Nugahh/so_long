@@ -9,7 +9,7 @@
 			"name": "(gdb) Lancer",
 			"type": "cppdbg",
 			"request": "launch",
-			"program": "${workspaceFolder}/so_long/src/parsing/a.out",
+			"program": "${workspaceFolder}/so_long/src/parsing/so_long",
 			"args": ["../maps/test.ber"],
 			"stopAtEntry": false,
 			"cwd": "${fileDirname}",
