@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/18 19:34:54 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/19 17:41:27 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,36 +69,33 @@ int	ft_display_map(t_data *data)
 	return (0);
 }
 
-int	start_game(char **map)
+int	start_game(t_data *data)
 {
-	t_data data;
+	init_ptr(data);
+	init_img(data);
+	ft_display_map(data);
+	// mlx_key_hook(data->win, ft_move, data);
+	mlx_hook(data->win, 2, 1L<<0, ft_move, &data);
+	mlx_hook(data->win, 17, 0, &ft_clean_before_exit, data);
+	mlx_loop(data->mlx);
+	return (0);
+}
 
-	data.step = 0;
-	data.map = map;
-	data.mlx = mlx_init();
-	ft_initialyze_img(&data, errors);
-	data.mlx_win = mlx_new_window(data.mlx, data.height_map * 64,
-			data.width_map * 64, "so_long");
-	ft_display_map(&data);
-	mlx_key_hook(data.mlx_win, ft_loop_move, &data);
-	mlx_hook(data.mlx_win, 17, 0, &ft_clean_before_exit, &data);
-	mlx_loop(data.mlx);
-}
-int	main (int argc, char **argv)
-{
-	t_data data;
+// int	main (int argc, char **argv)
+// {
+// 	t_data data;
 	
-	if (argc == 2)
-	{
-		ft_init_struct(&data);
-		get_map(&data, argv[1]);
-		init_ptr(&data);
-		init_img(&data);
-		// ft_display_map(&data);
-		ft_find_player(&data);
-		mlx_loop_hook(data.mlx, ft_display_map, &data);
-		mlx_hook(data.win, 2, 1L<<0, ft_move, &data);
-		//mlx_key_hook(data.win, ft_move, &data);
-		mlx_loop(data.mlx);
-	}
-}
+// 	if (argc == 2)
+// 	{
+// 		ft_init_struct(&data);
+// 		get_map(&data, argv[1]);
+// 		init_ptr(&data);
+// 		init_img(&data);
+// 		// ft_display_map(&data);
+// 		ft_find_player(&data);
+// 		mlx_loop_hook(data.mlx, ft_display_map, &data);
+// 		mlx_hook(data.win, 2, 1L<<0, ft_move, &data);
+// 		//mlx_key_hook(data.win, ft_move, &data);
+// 		mlx_loop(data.mlx);
+// 	}
+// }

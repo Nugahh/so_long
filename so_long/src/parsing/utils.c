@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/18 15:52:52 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/19 18:22:00 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,35 +39,6 @@ int	ft_count_line(char *argv, t_data *data)
 	return (count);
 }
 
-int	ft_count_collectible(t_data *data)
-{
-	int	i;
-	int	j;
-	int	p;
-	int	e;
-
-	i = -1;
-	p = 0;
-	e = 0;
-	while (data->map[++i])
-	{
-		j = 0;
-		while (data->map[i][j])
-		{
-			if (data->map[i][j] == 'C')
-				data->total_collectible++;
-			if (data->map[i][j] == 'P')
-				p++;
-			if (data->map[i][j] == 'E')
-				e++;
-			j++;
-		}
-	}
-	if (p != 1 || e != 1)
-		return (0);
-	return (1);
-}
-
 void	ft_init_struct(t_data *data)
 {
 	data->mlx = NULL;
@@ -84,6 +55,8 @@ void	ft_init_struct(t_data *data)
 	data->width = 0;
 	data->x = 0;
 	data->y = 0;
-	data->count_collectible = 0;
-	data->total_collectible = 0;
+	data->count_C = 0;
+	data->count_E = 0;
+	data->count_P = 0;
+	data->total_C = 0;
 }

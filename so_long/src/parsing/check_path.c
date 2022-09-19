@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:13:39 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/15 16:34:06 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/19 18:30:49 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -32,25 +32,25 @@ void	ft_change_to_player(t_data *data, int i, int j)
 	if (data->map_fill[i][j + 1] == '0' || data->map_fill[i][j + 1] == 'C')
 	{
 		if (data->map_fill[i][j + 1] == 'C')
-			data->count_collectible++;
+			data->count_C++;
 		data->map_fill[i][j + 1] = 'P';
 	}
 	if (data->map_fill[i - 1][j] == '0' || data->map_fill[i - 1][j] == 'C')
 	{
 		if (data->map_fill[i - 1][j] == 'C')
-			data->count_collectible++;
+			data->count_C++;
 		data->map_fill[i - 1][j] = 'P';
 	}
 	if (data->map_fill[i][j - 1] == '0' || data->map_fill[i][j - 1] == 'C')
 	{
 		if (data->map_fill[i][j - 1] == 'C')
-			data->count_collectible++;
+			data->count_C++;
 		data->map_fill[i][j - 1] = 'P';
 	}
 	if (data->map_fill[i + 1][j] == '0' || data->map_fill[i + 1][j] == 'C')
 	{
 		if (data->map_fill[i + 1][j] == 'C')
-			data->count_collectible++;
+			data->count_C++;
 		data->map_fill[i + 1][j] = 'P';
 	}
 }
@@ -105,14 +105,13 @@ void	ft_flood_fill(t_data *data)
 
 int	ft_check_path(t_data *data)
 {
-	ft_init_struct(data);
+	ft_check_each(data);
 	ft_flood_fill(data);
-	if (ft_count_collectible(data))
-	{
-		if (data->count_collectible == data->total_collectible
-			&& ft_check_exit(data))
-			return (1);
-	}
+	printf("count_c = %d\n", data->count_C);
+	printf("total_c = %d\n", data->total_C);
+	if (data->count_C == data->total_C
+		&& ft_check_exit(data))
+		return (printf("oui\n"), 1);
 	return (0);
 }
 

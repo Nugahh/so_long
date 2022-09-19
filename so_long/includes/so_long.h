@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/17 19:12:21 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/19 17:38:58 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,9 +40,10 @@ typedef struct s_data
 	void	*EO_IMG;
 	char	**map;
 	char	**map_fill;
-	int		count_collectible;
-	int		total_collectible;
-	int		collectible;
+	int		count_P;
+	int		count_E;
+	int		count_C;
+	int		total_C;
 	int		x;
 	int		y;
 	int		width;
@@ -50,10 +51,6 @@ typedef struct s_data
 	int		step_count;
 	bool	exit;
 }	t_data;
-
-typedef struct s_utils
-{
-}	t_utils;
 
 /* ************************************************************************* */
 /*                                    Parsing                                */
@@ -79,10 +76,13 @@ int		ft_check_map(t_data *data, char *argv);
 /* ************************************************************************* */
 
 // display map
+int	init_ptr(t_data *data);
+void	init_img(t_data *data);
 int	ft_display_map(t_data *data);
-int ft_update_map(t_data *data);
-int	ft_close_window(t_data *data);
-int	ft_close(t_data *data);
+int	start_game(t_data *data);
+// int ft_update_map(t_data *data);
+// int	ft_close_window(t_data *data);
+// int	ft_close(t_data *data);
 
 // move functions
 int		ft_find_player(t_data *data);
@@ -96,9 +96,13 @@ void	ft_move_right(t_data *data);
 /*                                    Utils                                  */
 /* ************************************************************************* */
 
-int		ft_count_collectible(t_data *data);
 int		ft_count_line(char *argv, t_data *data);
 int		ft_copy_map(t_data *data);
 void	ft_init_struct(t_data *data);
+
+// free functions
+void	ft_free_map(t_data *data);
+void	ft_free_map_fill(t_data *data);
+int		ft_clean_before_exit(t_data *data);
 
 #endif

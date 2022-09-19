@@ -25,6 +25,8 @@ SRCS	= 	parsing.c\
 			utils.c\
 			init_map.c\
 			move.c\
+			utils2.c\
+			so_long.c\
 
 OBJS	:=	${addprefix ./obj/,${SRCS:%.c=%.o}}
 
