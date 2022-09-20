@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 21:43:34 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 23:31:43 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/20 20:21:04 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,9 +38,9 @@ int	ft_find_player(t_data *data)
 void	ft_move_up(t_data *data)
 {
 	if (data->map[data->y - 1][data->x] == 'E' && data->exit == 1)
-		mlx_destroy_window(data->mlx, data->win);	
+		mlx_loop_end(data->mlx);	
 	if ((data->map[data->y - 1][data->x] != '1' 
-	&& data->map[data->y - 1][data->x] != 'E'))
+		&& data->map[data->y - 1][data->x] != 'E'))
 	{
 		if (data->map[data->y - 1][data->x] == 'C')
 			data->count_C++;
@@ -50,13 +50,14 @@ void	ft_move_up(t_data *data)
 	}
 	if (data->count_C == data->total_C)
 		data->exit = 1;
+}
 
 void	ft_move_down(t_data *data)
 {
 	if (data->map[data->y + 1][data->x] == 'E' && data->exit == 1)
-		mlx_destroy_window(data->mlx, data->win);
+		mlx_loop_end(data->mlx);	
 	if (data->map[data->y + 1][data->x] != '1'
-	&& data->map[data->y + 1][data->x] != 'E')
+		&& data->map[data->y + 1][data->x] != 'E')
 	{
 		if (data->map[data->y + 1][data->x] == 'C')
 			data->count_C++;
@@ -71,9 +72,9 @@ void	ft_move_down(t_data *data)
 void	ft_move_left(t_data *data)
 {
 	if (data->map[data->y][data->x - 1] == 'E' && data->exit == 1)
-		mlx_destroy_window(data->mlx, data->win);
+		mlx_loop_end(data->mlx);	
 	if (data->map[data->y][data->x - 1] != '1'
-	&& data->map[data->y][data->x - 1] != 'E')
+		&& data->map[data->y][data->x - 1] != 'E')
 	{
 		if (data->map[data->y][data->x - 1] == 'C')
 			data->count_C++;
@@ -88,9 +89,9 @@ void	ft_move_left(t_data *data)
 void	ft_move_right(t_data *data)
 {
 	if (data->map[data->y][data->x + 1] == 'E' && data->exit == 1)
-		mlx_destroy_window(data->mlx, data->win);
+		mlx_loop_end(data->mlx);	
 	if (data->map[data->y][data->x + 1] != '1'
-	&& data->map[data->y][data->x + 1] != 'E')
+		&& data->map[data->y][data->x + 1] != 'E')
 	{
 		if (data->map[data->y][data->x + 1] == 'C')
 			data->count_C++;
@@ -105,7 +106,7 @@ void	ft_move_right(t_data *data)
 int	ft_move(int keycode, t_data *data)
 {	
 	if (keycode == XK_Escape)
-		mlx_destroy_window(data->mlx, data->win);
+		mlx_loop_end(data->mlx);
 	if (keycode == XK_w || keycode == XK_Up)
 		ft_move_up(data);
 	else if (keycode == XK_s || keycode == XK_Down)

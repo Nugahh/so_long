@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 23:31:26 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/20 23:52:08 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ int	init_ptr(t_data *data)
 	data->win = mlx_new_window(data->mlx, (data->width - 1) * 64, data->height * 64, "so_long");
 	if (data->win == NULL)
 		return (free(data->win), 0);
-	return (0);
+	return (1);
 }
 
 void	init_img(t_data *data)
@@ -62,6 +62,8 @@ int	ft_display_map(t_data *data)
 				mlx_put_image_to_window(data->mlx, data->win, data->F_IMG, y * 64, x * 64);
 			else if (data->map[x][y] == 'E')
 				mlx_put_image_to_window(data->mlx, data->win, data->EC_IMG, y * 64, x * 64);
+			if (data->map[x][y] == 'E' && data->exit == 1)
+				mlx_put_image_to_window(data->mlx, data->win, data->EO_IMG, y * 64, x * 64);
 			y++;
 		}
 		x++;	
@@ -71,14 +73,17 @@ int	ft_display_map(t_data *data)
 
 int	start_game(t_data *data)
 {
-	init_ptr(data);
+	if (!init_ptr(data))
+		return (0);
 	init_img(data);
 	ft_find_player(data);
+	if (!data->win)
+		return (0);
 	mlx_loop_hook(data->mlx, ft_display_map, data);
 	mlx_hook(data->win, 2, 1L<<0, ft_move, data);
 	mlx_hook(data->win, 33, 0L, &ft_clean_before_exit, data);
 	mlx_loop(data->mlx);
-	return (0);
+	return (1);
 }
 
 // int	main (int argc, char **argv)

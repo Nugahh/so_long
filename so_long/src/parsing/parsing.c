@@ -6,13 +6,13 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 22:40:00 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/20 23:50:55 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "../../includes/so_long.h"
 
-void get_map(t_data *data, char *argv)
+int	get_map(t_data *data, char *argv)
 {
 	int i;
 	int fd;
@@ -21,16 +21,17 @@ void get_map(t_data *data, char *argv)
 	size = ft_count_line(argv, data);
 	fd = open(argv, O_RDONLY);
 	if (fd <= -1)
-		return;
+		return (0);
 	data->map = malloc(sizeof(char *) * (size + 1));
 	if (!data->map)
-		return;
+		return (0);
 	i = 0;
 	while (i < size)
 		data->map[i++] = get_next_line(fd);
 	close(fd);
 	data->width = ft_strlen(data->map[0]);
 	ft_copy_map(data);
+	return (1);
 }
 
 int ft_copy_map(t_data *data)
@@ -55,7 +56,7 @@ int ft_copy_map(t_data *data)
 		data->map_fill[i][j] = 0;
 		i++;
 	}
-	data->map_fill[i] = 0;
+	// data->map_fill[i] = 0;
 	return (1);
 }
 

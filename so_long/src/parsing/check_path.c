@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:13:39 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 23:22:22 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/20 23:41:49 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -87,7 +87,7 @@ void	ft_flood_fill(t_data *data)
 	int		j;
 
 	i = 0;
-	while (data->map_fill[i])
+	while (i < data->height)
 	{
 		j = 0;
 		while (data->map_fill[i][j])

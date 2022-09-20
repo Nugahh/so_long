@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 23:17:57 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/20 19:52:28 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data
 /*                                    Parsing                                */
 /* ************************************************************************* */
 
-void	get_map(t_data *data, char *argv);
+int	get_map(t_data *data, char *argv);
 
 // check path functions
 int		ft_check_player(t_data *data, int i, int j);
