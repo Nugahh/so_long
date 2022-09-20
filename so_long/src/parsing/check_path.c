@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:13:39 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 18:30:49 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/19 23:22:22 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,13 +105,13 @@ void	ft_flood_fill(t_data *data)
 
 int	ft_check_path(t_data *data)
 {
-	ft_check_each(data);
 	ft_flood_fill(data);
-	printf("count_c = %d\n", data->count_C);
-	printf("total_c = %d\n", data->total_C);
 	if (data->count_C == data->total_C
 		&& ft_check_exit(data))
-		return (printf("oui\n"), 1);
+	{
+		data->count_C = 0;
+		return (1);
+	}
 	return (0);
 }
 

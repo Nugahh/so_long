@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 18:22:00 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/19 23:17:47 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,14 +25,11 @@ int	ft_count_line(char *argv, t_data *data)
 	map = get_next_line(fd);
 	if (!map)
 		return (close(fd), 1);
-	int x = 0;
 	while (map)
 	{
-		ft_putnbr_fd(x, 1);
 		free(map);
 		map = get_next_line(fd);
 		count++;
-		x++;
 	}
 	close(fd);
 	data->height = count;
@@ -55,6 +52,7 @@ void	ft_init_struct(t_data *data)
 	data->width = 0;
 	data->x = 0;
 	data->y = 0;
+	data->exit = 0;
 	data->count_C = 0;
 	data->count_E = 0;
 	data->count_P = 0;

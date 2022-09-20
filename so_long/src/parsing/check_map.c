@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:16:10 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 18:22:13 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/19 22:41:32 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,7 +19,7 @@ int	ft_check_rectangle_map(t_data *data)
 	int	k;
 
 	i = 0;
-	while (data->map[i])
+	while (i < data->height)
 	{
 		j = 0;
 		while (data->map[i][j])
@@ -67,7 +67,7 @@ int	ft_check_each(t_data *data)
 	int	j;
 
 	i = 0;
-	while (data->map[i])
+	while (i < data->height)
 	{
 		j = 0;
 		while (data->map[i][j])
@@ -98,8 +98,8 @@ int	ft_check_map(t_data *data, char *argv)
 		return (0);
 	if (!ft_check_each(data))
 		return (0);
-	i = -1;
-	while (data->map[++i])
+	i = 0;
+	while (i < data->height)
 	{
 		j = -1;
 		while (data->map[i][++j])
@@ -112,6 +112,7 @@ int	ft_check_map(t_data *data, char *argv)
 			&& data->map[i][j] != 'C'))
 				return (0);
 		}	
+		i++;
 	}
 	return (1);
 }

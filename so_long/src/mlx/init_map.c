@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/19 17:41:27 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/19 23:31:26 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,10 +73,10 @@ int	start_game(t_data *data)
 {
 	init_ptr(data);
 	init_img(data);
-	ft_display_map(data);
-	// mlx_key_hook(data->win, ft_move, data);
-	mlx_hook(data->win, 2, 1L<<0, ft_move, &data);
-	mlx_hook(data->win, 17, 0, &ft_clean_before_exit, data);
+	ft_find_player(data);
+	mlx_loop_hook(data->mlx, ft_display_map, data);
+	mlx_hook(data->win, 2, 1L<<0, ft_move, data);
+	mlx_hook(data->win, 33, 0L, &ft_clean_before_exit, data);
 	mlx_loop(data->mlx);
 	return (0);
 }
