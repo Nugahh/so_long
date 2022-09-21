@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/20 19:52:28 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/21 06:51:39 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ typedef struct s_data
 /*                                    Parsing                                */
 /* ************************************************************************* */
 
-int	get_map(t_data *data, char *argv);
+int		get_map(t_data *data, char *argv);
 
 // check path functions
 int		ft_check_player(t_data *data, int i, int j);
@@ -67,22 +67,19 @@ int		ft_check_path(t_data *data);
 
 // check valid map functions
 int		ft_check_each(t_data *data);
-int		ft_check_wall(t_data *data, char *argv);
+int		ft_check_wall(t_data *data);
 int		ft_check_rectangle_map(t_data *data);
-int		ft_check_map(t_data *data, char *argv);
+int		ft_check_map(t_data *data);
 
 /* ************************************************************************* */
 /*                                    Minilibx                               */
 /* ************************************************************************* */
 
 // display map
-int	init_ptr(t_data *data);
-void	init_img(t_data *data);
-int	ft_display_map(t_data *data);
-int	start_game(t_data *data);
-// int ft_update_map(t_data *data);
-// int	ft_close_window(t_data *data);
-// int	ft_close(t_data *data);
+int		init_ptr(t_data *data);
+int		init_img(t_data *data);
+int		ft_display_map(t_data *data);
+int		start_game(t_data *data);
 
 // move functions
 int		ft_find_player(t_data *data);
