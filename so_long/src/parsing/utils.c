@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/21 06:53:43 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/22 04:20:39 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,18 +36,57 @@ int	ft_count_line(char *argv, t_data *data)
 	return (count);
 }
 
+int	ft_remove_nl(t_data *data)
+{
+	int		i;
+	size_t	j;
+
+	i = 0;
+	while (i < data->height)
+	{
+		j = 0;
+		while (data->map[i][j])
+		{
+			if (data->map[i][j] == '\n' || data->map[i][j] == '\r')
+				data->map[i][j] = 0;
+			j++;
+		}
+		i++;
+	}
+	return (1);
+}
+
+int	ft_check_ber_ext(char *argv)
+{
+	int	i;
+	
+	i = 0;
+	while (argv[i])
+		i++;
+	if (argv[i - 1] == 'r' && argv[i - 2] == 'e' 
+		&& argv[i - 3] == 'b' && argv[i - 4] == '.')
+		return (1);
+	return (ft_putstr_fd("Error\nFile should be .ber extension!\n", 1), 0);
+}
+
 void	ft_error(t_data *data)
 {
 	if (!ft_check_rectangle_map(data))
 		ft_putstr_fd("Error\nMap should be rectangle\n", 1);
-	if (!ft_check_wall(data))
+	else if (!ft_check_wall(data))
 		ft_putstr_fd("Error\nWalls should be filled with '1'\n", 1);
-	if (!ft_check_each(data))
+	else if (!ft_check_each(data))
 		ft_putstr_fd("Error\nThere should be at least 1 P, 1 C and 1 E\n", 1);
-	if (!ft_check_map(data))
-		ft_putstr_fd("Error\nUnauthorized characters in the map\n", 1);
-	if
+	else if (!ft_check_map(data))
+		ft_putstr_fd("Error\nUnauthorized characters in the map\n", 1);\
+	else if (!ft_check_exit(data))
+		ft_putstr_fd("Error\nExit not reachable by the Player!\n", 1);
+	else if (!data->map)
+		ft_putstr_fd("Error\nMap doesn't exist!\n", 1);
+	else if (!data->map_fill)
+		ft_putstr_fd("Error\nMap_fill doesn't exist!\n", 1);
 }
+
 void	ft_init_struct(t_data *data)
 {
 	data->mlx = NULL;

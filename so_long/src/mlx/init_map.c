@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/21 06:37:13 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/21 23:38:58 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,9 +31,9 @@ int	init_img(t_data *data)
 	x = 0;
 	y = 0;
 	data->P_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/player.xpm", &x, &y);
+	data->F_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/floor.xpm", &x, &y);
 	data->C_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/collectible.xpm", &x, &y);
 	data->W_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/wall.xpm", &x, &y);
-	data->F_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/floor.xpm", &x, &y);
 	data->EC_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/ec.xpm", &x, &y);
 	data->EO_IMG = mlx_xpm_file_to_image(data->mlx, "xpm/eo.xpm", &x, &y);
 	if (!data->C_IMG || !data->P_IMG || !data->W_IMG || !data->F_IMG 
@@ -79,7 +79,7 @@ int	start_game(t_data *data)
 	ft_find_player(data);
 	mlx_loop_hook(data->mlx, ft_display_map, data);
 	mlx_hook(data->win, 2, 1L<<0, ft_move, data);
-	mlx_hook(data->win, 33, 0L, &ft_clean_before_exit, data);
+	mlx_hook(data->win, 33, 0L, &ft_clean_before_exit2, data);
 	mlx_loop(data->mlx);
 	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/21 06:51:39 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/22 03:42:52 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,7 +46,7 @@ typedef struct s_data
 	int		total_C;
 	int		x;
 	int		y;
-	int		width;
+	size_t	width;
 	int		height;
 	int		step_count;
 	int		exit;
@@ -62,7 +62,7 @@ int		get_map(t_data *data, char *argv);
 int		ft_check_player(t_data *data, int i, int j);
 void	ft_change_to_player(t_data *data, int i, int j);
 int		ft_check_exit(t_data *data);
-void	ft_flood_fill(t_data *data);
+int		ft_flood_fill(t_data *data);
 int		ft_check_path(t_data *data);
 
 // check valid map functions
@@ -70,6 +70,7 @@ int		ft_check_each(t_data *data);
 int		ft_check_wall(t_data *data);
 int		ft_check_rectangle_map(t_data *data);
 int		ft_check_map(t_data *data);
+int		ft_check_player_within_walls(t_data *data);
 
 /* ************************************************************************* */
 /*                                    Minilibx                               */
@@ -96,10 +97,16 @@ void	ft_move_right(t_data *data);
 int		ft_count_line(char *argv, t_data *data);
 int		ft_copy_map(t_data *data);
 void	ft_init_struct(t_data *data);
+int		ft_remove_nl(t_data *data);
 
 // free functions
 void	ft_free_map(t_data *data);
 void	ft_free_map_fill(t_data *data);
 int		ft_clean_before_exit(t_data *data);
+int		ft_clean_before_exit2(t_data *data);
+
+// error functions
+void	ft_error(t_data *data);
+int		ft_check_ber_ext(char *argv);
 
 #endif

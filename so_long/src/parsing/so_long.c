@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:50:27 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/21 04:15:20 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/22 04:13:46 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,11 +19,13 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		ft_init_struct(&data);
+		// if (!ft_check_ber_ext(argv[1]))
+		// 	return (0);
 		if (!get_map(&data, argv[1]))
-			return (ft_clean_before_exit(&data), 1);
-		if (ft_check_map(&data, argv[1]) && ft_check_path(&data))
+			return (ft_clean_before_exit(&data), 0);
+		if (ft_check_map(&data) && ft_check_path(&data))
 			start_game(&data);
 		ft_clean_before_exit(&data);
 	}
-	return (0);
+	return (1);
 }

@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/21 06:38:32 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/22 06:38:38 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ int	get_map(t_data *data, char *argv)
 	size = ft_count_line(argv, data);
 	fd = open(argv, O_RDONLY);
 	if (fd <= -1)
-		return (0);
+		return (ft_putstr_fd("Error\nfd is not correct!\n", 1), 0);
 	data->map = malloc(sizeof(char *) * (size + 1));
 	if (!data->map)
 		return (0);
@@ -29,6 +29,8 @@ int	get_map(t_data *data, char *argv)
 	while (i < size)
 		data->map[i++] = get_next_line(fd);
 	close(fd);
+
+	ft_remove_nl(data);
 	data->width = ft_strlen(data->map[0]);
 	ft_copy_map(data);
 	return (1);
@@ -42,21 +44,21 @@ int ft_copy_map(t_data *data)
 
 	data->map_fill = malloc(sizeof(char *) * (data->height + 1));
 	if (!data->map_fill)
-		return (0);
+		return (ft_error(data), 0);
 	i = 0;
 	while (i < data->height)
 	{
 		len = ft_strlen(data->map[i]);
 		data->map_fill[i] = malloc(sizeof(char) * (len + 1));
 		if (!data->map_fill[i])
-			return (0);
+			return (ft_putstr_fd("Error\nMap_fill[i] doesn't exist!", 1), 0);
 		j = -1;
 		while (data->map[i][++j])
 			data->map_fill[i][j] = data->map[i][j];
 		data->map_fill[i][j] = 0;
 		i++;
 	}
-	// data->map_fill[i] = 0;
+	data->map_fill[i] = 0;
 	return (1);
 }
 

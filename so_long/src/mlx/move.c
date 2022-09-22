@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 21:43:34 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/20 20:21:04 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/21 23:16:38 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -104,7 +104,7 @@ void	ft_move_right(t_data *data)
 }
 
 int	ft_move(int keycode, t_data *data)
-{	
+{
 	if (keycode == XK_Escape)
 		mlx_loop_end(data->mlx);
 	if (keycode == XK_w || keycode == XK_Up)

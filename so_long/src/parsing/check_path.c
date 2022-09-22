@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/08 21:13:39 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/20 23:41:49 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/22 02:57:24 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -78,19 +78,20 @@ int	ft_check_exit(t_data *data)
 		}
 		i++;
 	}
-	return (0);
+	return (ft_error(data), 0);
 }
 
-void	ft_flood_fill(t_data *data)
+int	ft_flood_fill(t_data *data)
 {
 	int		i;
 	int		j;
 
 	i = 0;
+	ft_check_player_within_walls(data);
 	while (i < data->height)
 	{
 		j = 0;
-		while (data->map_fill[i][j])
+		while (data->map_fill[i][j] != '\0')
 		{
 			if (ft_check_player(data, i, j))
 			{
@@ -101,6 +102,7 @@ void	ft_flood_fill(t_data *data)
 		}
 		i++;
 	}
+	return (1);
 }
 
 int	ft_check_path(t_data *data)
