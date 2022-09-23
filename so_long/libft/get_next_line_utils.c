@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/08 01:44:59 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/22 04:12:37 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 15:22:53 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -92,7 +92,7 @@ char	*ft_get_endline(char *str)
 
 	i = 0;
 	if (!str)
-		return (NULL);
+		return (free(str), NULL);
 	while (str[i] && str[i] != '\n')
 		i++;
 	if (!str[i])
@@ -104,5 +104,7 @@ char	*ft_get_endline(char *str)
 	while (str[i])
 		dest[j++] = str[++i];
 	dest[j] = '\0';
+	if (i == 0)
+		return (free(str), free(dest), NULL);
 	return (free(str), dest);
 }

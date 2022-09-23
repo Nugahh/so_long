@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/22 04:20:39 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 14:59:55 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,7 @@ int	ft_count_line(char *argv, t_data *data)
 		return (0);
 	map = get_next_line(fd);
 	if (!map)
-		return (close(fd), 1);
+		return (close(fd), exit(0), 1);
 	while (map)
 	{
 		free(map);

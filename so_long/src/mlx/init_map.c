@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/21 23:38:58 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 13:13:07 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@ int	init_ptr(t_data *data)
 	data->mlx = mlx_init();
 	if (data->mlx == NULL)
 		return (0);
-	data->win = mlx_new_window(data->mlx, (data->width - 1) * 64, data->height * 64, "so_long");
+	data->win = mlx_new_window(data->mlx, (data->width) * 64, data->height * 64, "so_long");
 	if (data->win == NULL)
 		return (0);
 	return (1);

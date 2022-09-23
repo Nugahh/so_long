@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:03:54 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/18 17:51:47 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 15:24:03 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ char	*get_next_line(int fd)
 	{
 		red = read(fd, buffer, BUFFER_SIZE);
 		if (red == 0 && cache == NULL)
-			return (free(buffer), NULL);
+			return (free(cache), free(buffer), NULL);
 		if (red == -1)
 			return (free(cache), free(buffer), NULL);
 		buffer[red] = '\0';
