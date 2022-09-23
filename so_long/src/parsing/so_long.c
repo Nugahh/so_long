@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/19 16:50:27 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/23 13:17:50 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:04:15 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,9 @@ int	main(int argc, char **argv)
 	if (argc == 2)
 	{
 		ft_init_struct(&data);
+		data.mlx = mlx_init();
+		if (data.mlx == NULL)
+			return (0);
 		if (!ft_check_ber_ext(argv[1]))
 			return (0);
 		if (!get_map(&data, argv[1]))

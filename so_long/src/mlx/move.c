@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/12 21:43:34 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/21 23:16:38 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:15:05 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,6 +47,7 @@ void	ft_move_up(t_data *data)
 		data->map[data->y - 1][data->x] = 'P';
 		data->map[data->y][data->x] = '0';
 		data->y--;
+		data->step_count++;
 	}
 	if (data->count_C == data->total_C)
 		data->exit = 1;
@@ -64,6 +65,7 @@ void	ft_move_down(t_data *data)
 		data->map[data->y + 1][data->x] = 'P';
 		data->map[data->y][data->x] = '0';
 		data->y++;
+		data->step_count++;
 	}
 	if (data->count_C == data->total_C)
 		data->exit = 1;
@@ -81,6 +83,7 @@ void	ft_move_left(t_data *data)
 		data->map[data->y][data->x - 1] = 'P';
 		data->map[data->y][data->x] = '0';
 		data->x--;
+		data->step_count++;
 	}
 	if (data->count_C == data->total_C)
 		data->exit = 1;
@@ -98,6 +101,7 @@ void	ft_move_right(t_data *data)
 		data->map[data->y][data->x + 1] = 'P';
 		data->map[data->y][data->x] = '0';
 		data->x++;
+		data->step_count++;
 	}
 	if (data->count_C == data->total_C)
 		data->exit = 1;

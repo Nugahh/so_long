@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/04 20:39:46 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/23 14:59:55 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:33:34 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,8 +23,10 @@ int	ft_count_line(char *argv, t_data *data)
 	if (fd <= -1)
 		return (0);
 	map = get_next_line(fd);
+	if (map == NULL)
+		return (close(fd), free(map), ft_error(data), exit(0), 0);	
 	if (!map)
-		return (close(fd), exit(0), 1);
+		return (close(fd), exit(0), 0);
 	while (map)
 	{
 		free(map);
@@ -71,7 +73,11 @@ int	ft_check_ber_ext(char *argv)
 
 void	ft_error(t_data *data)
 {
-	if (!ft_check_rectangle_map(data))
+	if (!data->map || data->map == NULL)
+		ft_putstr_fd("Error\nMap doesn't exist!\n", 1);
+	else if (!data->map_fill)
+		ft_putstr_fd("Error\nMap_fill doesn't exist!\n", 1);
+	else if (!ft_check_rectangle_map(data))
 		ft_putstr_fd("Error\nMap should be rectangle\n", 1);
 	else if (!ft_check_wall(data))
 		ft_putstr_fd("Error\nWalls should be filled with '1'\n", 1);
@@ -81,10 +87,6 @@ void	ft_error(t_data *data)
 		ft_putstr_fd("Error\nUnauthorized characters in the map\n", 1);\
 	else if (!ft_check_exit(data))
 		ft_putstr_fd("Error\nExit not reachable by the Player!\n", 1);
-	else if (!data->map)
-		ft_putstr_fd("Error\nMap doesn't exist!\n", 1);
-	else if (!data->map_fill)
-		ft_putstr_fd("Error\nMap_fill doesn't exist!\n", 1);
 }
 
 void	ft_init_struct(t_data *data)
@@ -104,6 +106,7 @@ void	ft_init_struct(t_data *data)
 	data->x = 0;
 	data->y = 0;
 	data->exit = 0;
+	data->step_count = 0;
 	data->count_C = 0;
 	data->count_E = 0;
 	data->count_P = 0;

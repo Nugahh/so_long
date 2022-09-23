@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/22 03:42:52 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:12:45 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -80,6 +80,7 @@ int		ft_check_player_within_walls(t_data *data);
 int		init_ptr(t_data *data);
 int		init_img(t_data *data);
 int		ft_display_map(t_data *data);
+int		ft_img_to_window(t_data *data, int x, int y);
 int		start_game(t_data *data);
 
 // move functions

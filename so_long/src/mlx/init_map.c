@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/23 13:13:07 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:20:34 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,6 @@
 
 int	init_ptr(t_data *data)
 {
-	data->mlx = mlx_init();
-	if (data->mlx == NULL)
-		return (0);
 	data->win = mlx_new_window(data->mlx, (data->width) * 64, data->height * 64, "so_long");
 	if (data->win == NULL)
 		return (0);
@@ -46,6 +43,7 @@ int	ft_display_map(t_data *data)
 {
 	int	x;
 	int	y;
+	char*	step;
 
 	x = 0;
 	while (x < data->height)
@@ -53,22 +51,31 @@ int	ft_display_map(t_data *data)
 		y = 0;
 		while (data->map[x][y])
 		{
-			if (data->map[x][y] == 'P')
-				mlx_put_image_to_window(data->mlx, data->win, data->P_IMG, y * 64, x * 64);
-			else if (data->map[x][y] == 'C')
-				mlx_put_image_to_window(data->mlx, data->win, data->C_IMG, y * 64, x * 64);
-			else if (data->map[x][y] == '1')
-				mlx_put_image_to_window(data->mlx, data->win, data->W_IMG, y * 64, x * 64);
-			else if (data->map[x][y] == '0')
-				mlx_put_image_to_window(data->mlx, data->win, data->F_IMG, y * 64, x * 64);
-			else if (data->map[x][y] == 'E')
-				mlx_put_image_to_window(data->mlx, data->win, data->EC_IMG, y * 64, x * 64);
-			if (data->map[x][y] == 'E' && data->exit == 1)
-				mlx_put_image_to_window(data->mlx, data->win, data->EO_IMG, y * 64, x * 64);
+			ft_img_to_window(data, x, y);
+			step = ft_itoa(data->step_count);
+			mlx_string_put(data->mlx, data->win, 28, 32, 0xffffffff, step);
+			free(step);
 			y++;
 		}
 		x++;	
 	}
+	return (0);
+}
+
+int	ft_img_to_window(t_data *data, int x, int y)
+{
+	if (data->map[x][y] == 'P')
+		mlx_put_image_to_window(data->mlx, data->win, data->P_IMG, y * 64, x * 64);
+	else if (data->map[x][y] == 'C')
+		mlx_put_image_to_window(data->mlx, data->win, data->C_IMG, y * 64, x * 64);
+	else if (data->map[x][y] == '1')
+		mlx_put_image_to_window(data->mlx, data->win, data->W_IMG, y * 64, x * 64);
+	else if (data->map[x][y] == '0')
+		mlx_put_image_to_window(data->mlx, data->win, data->F_IMG, y * 64, x * 64);
+	else if (data->map[x][y] == 'E')
+		mlx_put_image_to_window(data->mlx, data->win, data->EC_IMG, y * 64, x * 64);
+	if (data->map[x][y] == 'E' && data->exit == 1)
+		mlx_put_image_to_window(data->mlx, data->win, data->EO_IMG, y * 64, x * 64);
 	return (0);
 }
 

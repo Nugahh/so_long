@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/23 15:22:10 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/23 18:36:51 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,15 +21,15 @@ int	get_map(t_data *data, char *argv)
 	size = ft_count_line(argv, data);
 	fd = open(argv, O_RDONLY);
 	if (fd <= -1)
-		return (ft_putstr_fd("Error\nfd is not correct!\n", 1), 0);
+		return (ft_putstr_fd("Error\nfd is not correct!\n", 1), close(fd), 0);
 	data->map = malloc(sizeof(char *) * (size + 1));
 	if (!data->map)
-		return (0);
+		return (close(fd), 0);
 	i = 0;
 	while (i < size + 1)
 		data->map[i++] = get_next_line(fd);
 	close(fd);
-	ft_remove_nl(data);
+	ft_remove_nl(data); 
 	data->width = ft_strlen(data->map[0]);
 	ft_copy_map(data);
 	return (1);
