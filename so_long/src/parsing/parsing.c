@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/23 18:36:51 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/24 15:28:24 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@ int	get_map(t_data *data, char *argv)
 	fd = open(argv, O_RDONLY);
 	if (fd <= -1)
 		return (ft_putstr_fd("Error\nfd is not correct!\n", 1), close(fd), 0);
-	data->map = malloc(sizeof(char *) * (size + 1));
+	data->map = ft_calloc((size + 1), (sizeof(char *)));
 	if (!data->map)
 		return (close(fd), 0);
 	i = 0;
@@ -41,14 +41,14 @@ int ft_copy_map(t_data *data)
 	int j;
 	int len;
 
-	data->map_fill = malloc(sizeof(char *) * (data->height + 1));
+	data->map_fill = ft_calloc((data->height + 1), (sizeof(char *)));
 	if (!data->map_fill)
 		return (ft_error(data), 0);
 	i = 0;
 	while (i < data->height)
 	{
 		len = ft_strlen(data->map[i]);
-		data->map_fill[i] = malloc(sizeof(char) * (len + 1));
+		data->map_fill[i] = ft_calloc((len + 1), (sizeof(char)));
 		if (!data->map_fill[i])
 			return (ft_putstr_fd("Error\nMap_fill[i] doesn't exist!", 1), 0);
 		j = -1;
