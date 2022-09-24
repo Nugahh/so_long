@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:16:10 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/22 04:34:27 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/24 15:47:46 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,9 +14,9 @@
 
 int	ft_check_rectangle_map(t_data *data)
 {
-	int	i;
+	int		i;
 	size_t	j;
-	
+
 	i = 0;
 	while (i < data->height)
 	{
@@ -24,7 +24,7 @@ int	ft_check_rectangle_map(t_data *data)
 		while (data->map[i][j])
 			j++;
 		if (data->width != j)
-				return (0);
+			return (0);
 		i++;
 	}
 	return (1);
@@ -68,16 +68,16 @@ int	ft_check_each(t_data *data)
 		while (data->map[i][j])
 		{
 			if (data->map[i][j] == 'P')
-				data->count_P++;
+				data->count_p++;
 			else if (data->map[i][j] == 'C')
-				data->total_C++;
+				data->total_c++;
 			else if (data->map[i][j] == 'E')
-				data->count_E++;
+				data->count_e++;
 			j++;
 		}
 		i++;
 	}
-	if (data->count_P == 1 && data->total_C >= 1 && data->count_E == 1)
+	if (data->count_p == 1 && data->total_c >= 1 && data->count_e == 1)
 		return (1);
 	return (0);
 }
@@ -86,15 +86,15 @@ int	ft_check_map(t_data *data)
 {
 	int	i;
 	int	j;
-	
+
 	if (!ft_check_rectangle_map(data))
 		return (ft_error(data), 0);
 	if (!ft_check_wall(data))
 		return (ft_error(data), 0);
 	if (!ft_check_each(data))
 		return (ft_error(data), 0);
-	i = 0;
-	while (i < data->height)
+	i = -1;
+	while (++i < data->height)
 	{
 		j = -1;
 		while (data->map[i][++j])
@@ -107,7 +107,6 @@ int	ft_check_map(t_data *data)
 			&& data->map[i][j] != 'C'))
 				return (0);
 		}	
-		i++;
 	}
 	return (1);
 }

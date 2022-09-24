@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 18:54:49 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/23 18:12:45 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/24 15:48:08 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,9 +20,9 @@
 # include "../libft/libft.h"
 # include "../libft/get_next_line.h"
 # include "../minilibx-linux/mlx.h"
-#include <X11/Xlib.h>
-#include <X11/Xutil.h>
-#include <stdbool.h>
+# include <X11/Xlib.h>
+# include <X11/Xutil.h>
+# include <stdbool.h>
 
 /* ************************************************************************* */
 /*                                    Structure                              */
@@ -32,18 +32,18 @@ typedef struct s_data
 {
 	void	*mlx;
 	void	*win;
-	void	*P_IMG;
-	void	*W_IMG;
-	void	*C_IMG;
-	void	*F_IMG;
-	void	*EC_IMG;
-	void	*EO_IMG;
+	void	*p_img;
+	void	*w_img;
+	void	*c_img;
+	void	*f_img;
+	void	*ec_img;
+	void	*eo_img;
 	char	**map;
 	char	**map_fill;
-	int		count_P;
-	int		count_E;
-	int		count_C;
-	int		total_C;
+	int		count_p;
+	int		count_e;
+	int		count_c;
+	int		total_c;
 	int		x;
 	int		y;
 	size_t	width;
@@ -95,6 +95,7 @@ void	ft_move_right(t_data *data);
 /*                                    Utils                                  */
 /* ************************************************************************* */
 
+// utils functions
 int		ft_count_line(char *argv, t_data *data);
 int		ft_copy_map(t_data *data);
 void	ft_init_struct(t_data *data);
