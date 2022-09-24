@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:16:10 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/24 15:47:46 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/24 16:00:26 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -105,7 +105,7 @@ int	ft_check_map(t_data *data)
 			&& data->map[i][j] != '0'
 			&& data->map[i][j] != '1'
 			&& data->map[i][j] != 'C'))
-				return (0);
+				return (ft_putstr_fd("Error\nProhibited char in map\n", 1), 0);
 		}	
 	}
 	return (1);
