@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/24 15:47:10 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/25 17:02:14 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	init_img(t_data *data)
 	data->eo_img = mlx_xpm_file_to_image(data->mlx, "xpm/eo.xpm", &x, &y);
 	if (!data->c_img || !data->p_img || !data->w_img || !data->f_img
 		|| !data->ec_img || !data->eo_img)
-		return (0);
+		return (ft_clean_before_exit(data), 0);
 	return (1);
 }
 

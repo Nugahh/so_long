@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/03 19:23:41 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/24 15:44:15 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/25 18:39:04 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,8 @@ int	get_map(t_data *data, char *argv)
 	close(fd);
 	ft_remove_nl(data);
 	data->width = ft_strlen(data->map[0]);
-	ft_copy_map(data);
+	if (!ft_copy_map(data))
+		return (0);
 	return (1);
 }
 

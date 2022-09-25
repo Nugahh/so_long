@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/06/27 12:03:54 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/23 15:24:03 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/25 18:19:06 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,7 +21,7 @@ char	*get_next_line(int fd)
 
 	if (BUFFER_SIZE <= 0 || (fd < 0 || fd > 1023))
 		return (NULL);
-	buffer = malloc(sizeof(char) * (BUFFER_SIZE + 1));
+	buffer = ft_calloc((BUFFER_SIZE + 1), (sizeof(char)));
 	if (!buffer)
 		return (NULL);
 	red = 1;
