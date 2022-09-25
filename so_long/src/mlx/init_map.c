@@ -6,7 +6,7 @@
 /*   By: fwong <fwong@student.42.fr>                +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2022/09/11 16:22:04 by fwong             #+#    #+#             */
-/*   Updated: 2022/09/25 17:02:14 by fwong            ###   ########.fr       */
+/*   Updated: 2022/09/25 18:57:53 by fwong            ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -36,7 +36,7 @@ int	init_img(t_data *data)
 	data->eo_img = mlx_xpm_file_to_image(data->mlx, "xpm/eo.xpm", &x, &y);
 	if (!data->c_img || !data->p_img || !data->w_img || !data->f_img
 		|| !data->ec_img || !data->eo_img)
-		return (ft_clean_before_exit(data), 0);
+		return (ft_clean_before_exit2(data), 0);
 	return (1);
 }
 
@@ -54,13 +54,15 @@ int	ft_display_map(t_data *data)
 		{
 			ft_img_to_window(data, x, y);
 			step = ft_itoa(data->step_count);
+			if (!step)
+				return (exit(0), 0);
 			mlx_string_put(data->mlx, data->win, 28, 32, 0xffffffff, step);
 			free(step);
 			y++;
 		}
 		x++;
 	}
-	return (0);
+	return (1);
 }
 
 int	ft_img_to_window(t_data *data, int x, int y)
@@ -91,9 +93,13 @@ int	start_game(t_data *data)
 	init_ptr(data);
 	init_img(data);
 	ft_find_player(data);
+	printf("OK\n");
 	mlx_loop_hook(data->mlx, ft_display_map, data);
+	printf("OK\n");
 	mlx_hook(data->win, 2, 1L << 0, ft_move, data);
+	printf("OK\n");
 	mlx_hook(data->win, 33, 0L, &ft_clean_before_exit2, data);
+	printf("OK\n");
 	mlx_loop(data->mlx);
 	return (1);
 }
